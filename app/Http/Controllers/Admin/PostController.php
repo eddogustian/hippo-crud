@@ -4,30 +4,34 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Post;
 use App\Category;
+use App\Post;
+use Auth;
+use DataTables;
+use Response;
+
 
 
 class PostController extends Controller
 {
     public function index() 
     {
-        
-        $post  = Post::with(['category'])->orderBy('created_at', 'DESC');
-        var_dump( $post ); die();
-        return view('admin.post.index', compact('post'));
+        $posts = Post::with(['category'])->orderBy('created_at', 'DESC')->get();
+        // var_dump($posts);die();
+        return view('admin.post.index', compact('posts'));
     }
     public function loadData()
     {
         $arr_data   = array();
-        $post = Post::with(['category'])->orderBy('created_at', 'DESC')->get();
+        $posts = Post::with(['category'])->orderBy('created_at', 'DESC')->get();
 
         $counter = 0;
-        foreach ($post as $value) {
+        foreach ($posts as $value) {
+    
             $arr_data['data'][$counter][] = $counter+1;
             $arr_data['data'][$counter][] = $value->judul ? $value->judul : "<p class='text-center'> - </p>";
             $arr_data['data'][$counter][] = $value->gambar ? $value->gambar : "<p class='text-center'> - </p>";
-            $arr_data['data'][$counter][] = $value->id_kategori ? $value->id_kategori : "<p class='text-center'> - </p>";
+            $arr_data['data'][$counter][] = $value->nama_kategori ? $value->nama_kategori : "<p class='text-center'> - </p>";
             $arr_data['data'][$counter][] = $value->isi ? $value->isi : "<p class='text-center'> - </p>";
             if ($value->status == 0) {
                 $arr_data['data'][$counter][] = "<span class='badge badge-danger'>Tidak Aktif</span>";

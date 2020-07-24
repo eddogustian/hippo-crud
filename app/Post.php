@@ -8,16 +8,13 @@ class Post extends Model
 {
     protected $guarded = []; 
 
-     //DEFINE RELATIONSHIPS
-     public function category()
-     {
-         //Post reference ke table Category
-         return $this->belongsTo(Category::class);
-     }
-
      public function detail()
      {
          //Invoice memiliki hubungan hasMany ke table invoice_detail
-         return $this->hasMany(Invoice_detail::class);
+         return $this->hasMany(Category::class);
      }
+     public function category()
+    {
+        return $this->belongsTo('App\Category', 'id_kategori', 'id');
+    }
 }
