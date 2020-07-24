@@ -29,6 +29,40 @@
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
+                        <tbody>
+                                @forelse ($posts as $post)
+                                    <tr>
+                                        <td><strong>#{{  $post->id }}</strong></td>
+                                        <td>{{ $post->judul }}</td>
+                                        <td>{{ $post->gambar }}</td>
+                                        <td>{{ $post->category->nama_kategori }}</td>
+                                        <td>{{ $post->isi }}</td>
+                                        <td>@if ($post->status == 0)
+                                            <span class='badge badge-danger'>Tidak Aktif</span>
+                                            @else
+                                                <span class='badge badge-primary'>Aktif</span>
+                                            @endif</td>
+                                        <td>{{ $post->created_at }}</td>
+                                        <td>{{ $post->updated_at }}</td>
+                                        <td>
+                                            <form action="" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <a href="" class="btn btn-secondary btn-sm">Print</a>
+                                                <a href="" class="btn btn-warning btn-sm">Edit</a>
+                                                <button class="btn btn-danger btn-sm">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="8" class="text-center">Tidak ada data</td>
+                                    </tr> 
+                                @endforelse
+                            </tbody>
+                        <!-- </?php foreach ($posts as $post) {
+                        echo $post->category->nama_kategori; die();
+                        } ?> -->
                     </table>
                 </div>
             </div>
@@ -39,60 +73,6 @@
 
 @section('adminlte_js')
     <script type="text/javascript">
-
-        $(document).ready(function() {
-            
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            var tabel = $('#post_table');
-            tabel.DataTable( {
-                "ajax": {
-                    "url": "{{ url('api/admin/post/data') }}",
-                    "dataSrc": function (d) {
-                        if (d.length === 0) {
-                            result = [];
-                        }else{
-                            result = d.data
-                        }
-                        return result;
-                    },
-                },
-                "order": [[ 0, "asc" ]],
-                "columnDefs": [
-                    { className: 'text-center', targets: [] },
-                ],
-                "dom": 'lBfrtip',
-                "buttons": [
-                    {
-                        extend: 'excel',
-                        title : 'Data Post',
-                        exportOptions: {
-                            columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
-                        }
-                    },
-                    {
-                        extend: 'pdf',
-                        title : 'Data Post',
-                        orientation: 'landscape',
-                        pageSize: 'LEGAL',
-                        exportOptions: {
-                            columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
-                        }
-                    },
-                    {
-                        extend: 'print',
-                        title : 'Data Post',
-                        exportOptions: {
-                            columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
-                        }
-                    },
-                ],
-            });
-
-        });
 
     </script>
     @yield('js')
