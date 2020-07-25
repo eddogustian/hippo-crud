@@ -85,4 +85,10 @@ class PostController extends Controller
             return redirect()->back()->with(['error' => $e->getMessage()]);
         }
     }
+    public function destroy($id)
+    {
+        $post = Post::find($id);
+        $post->delete();
+        return redirect('admin/post/index')->with(['success' => 'Data telah dihapus']);
+    }
 }
