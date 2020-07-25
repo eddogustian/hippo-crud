@@ -11,7 +11,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Tambah Data Pelanggan</h3>
+                        <h3 class="card-title">Update Data</h3>
                     </div>
                     <div class="card-body">
                         @if (session('error'))
@@ -36,7 +36,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="">Alamat</label>
+                                <label for="">Content</label>
                                 <textarea name="isi" cols="5" rows="5" class="form-control {{ $errors->has('isi') ? 'is-invalid':'' }}">{{ $post->isi }}</textarea>
                                 <p class="text-danger">{{ $errors->first('isi') }}</p>
                             </div>
