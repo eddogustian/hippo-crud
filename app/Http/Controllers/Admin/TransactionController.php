@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Transaction;
+
 
 class TransactionController extends Controller
 {
@@ -14,7 +16,27 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+        $transactions = Transaction::orderBy('created_at', 'DESC')->get();
+        // dd($transactions);
+        return view('admin.transaction.index', compact('transactions'));
+    }
+
+    public function loadData() {
+        $arr_data   = array();
+        $transactions = Transaction::orderBy('created_at', 'DESC')->get();
+
+        $counter = 0;
+        foreach ($transactions as $transaction) {
+            //  echo $category->nama_kategori; die();
+            $arr_data['data'][$counter][] = $counter+1;
+            $arr_data['data'][$counter][] = $transaction->kodetransaksi ? $transaction->kodetransaksi : "<p class='text-center'> - </p>";
+            $arr_data['data'][$counter][] = $transaction->total ? $transaction->total : "<p class='text-center'> - </p>";
+            $arr_data['data'][$counter][] = date("d-m-Y H:i:s", strtotime($transaction->created_at));
+            $arr_data['data'][$counter][] = date("d-m-Y H:i:s", strtotime($transaction->updated_at));
+            $arr_data['data'][$counter][] = "<a href='".url('admin/transaction/edit/'.$transaction->id)."' class='btn btn-primary'><i class='glyphicon glyphicon-edit'></i>Detail</a>";
+            $counter++;
+        }
+        return json_encode($arr_data);
     }
 
     /**

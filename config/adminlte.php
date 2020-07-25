@@ -268,7 +268,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'Transaction',
-                    'url'  => '#',
+                    'url'  => 'admin/transaction/index',
                 ],
             ],
         ],

@@ -34,6 +34,9 @@ Route::post('/admin/category', 'Admin\CategoryController@save')->name('category.
 Route::get('/admin/category/edit/{id}', 'Admin\CategoryController@edit')->name('category.edit');
 Route::post('/admin/category/update/{id}', 'Admin\CategoryController@update')->name('category.update');
 
+Route::get('/admin/transaction/index', 'Admin\TransactionController@index')->name('transaction.index');
+
+
 
 
 

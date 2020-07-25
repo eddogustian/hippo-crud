@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Create Post')
 
 @section('content_header')
     <a href="{{ url('admin/post/index') }}" class="btn btn-default pull-right">Back</a>
