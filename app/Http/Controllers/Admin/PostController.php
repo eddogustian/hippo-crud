@@ -29,12 +29,11 @@ class PostController extends Controller
 
         $counter = 0;
         foreach ($posts as $post) {
-            //  echo $post->category->nama_kategori; die();
+            //  echo $post->judul; die();
     
             $arr_data['data'][$counter][] = $counter+1;
             $arr_data['data'][$counter][] = $post->judul ? $post->judul : "<p class='text-center'> - </p>";
             $arr_data['data'][$counter][] = $post->gambar ? $post->gambar : "<p class='text-center'> - </p>";
-            $arr_data['data'][$counter][] = $post->nama_kategori ? $post->nama_kategori : "<p class='text-center'> - </p>";
             $arr_data['data'][$counter][] = $post->isi ? $post->isi : "<p class='text-center'> - </p>";
             if ($post->status == 0) {
                 $arr_data['data'][$counter][] = "<span class='badge badge-danger'>Tidak Aktif</span>";
@@ -42,6 +41,7 @@ class PostController extends Controller
             else{
                 $arr_data['data'][$counter][] = "<span class='badge badge-primary'>Aktif</span>";
             }
+            $arr_data['data'][$counter][] = $post->category->nama_kategori ? $post->category->nama_kategori : "<p class='text-center'> - </p>";
             $arr_data['data'][$counter][] = date("d-m-Y H:i:s", strtotime($post->created_at));
             $arr_data['data'][$counter][] = date("d-m-Y H:i:s", strtotime($post->updated_at));
             $arr_data['data'][$counter][] = "<a href='".url('admin/post/edit/'.$post->id)."' class='btn btn-warning'><i class='glyphicon glyphicon-edit'></i>Edit</a><a class='btn btn-danger' onclick='return confirm(\"Anda yakin akan menghapus data ini?\")' href='".url('admin/post/delete/'.$post->id)."'><i class='glyphicon glyphicon-trash'>Hapus</i></a>";
