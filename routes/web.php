@@ -28,6 +28,16 @@ Route::get('/admin/post/edit/{id}', 'Admin\PostController@edit')->name('post.edi
 Route::post('/admin/post/update/{id}', 'Admin\PostController@update')->name('post.update');
 Route::get('/admin/post/delete/{id}', 'Admin\PostController@destroy')->name('post.destroy');
 
+Route::get('/admin/category/index', 'Admin\CategoryController@index')->name('category.index');
+Route::get('/admin/category/create', 'Admin\CategoryController@create')->name('category.create');
+Route::post('/admin/category', 'Admin\CategoryController@save')->name('category.store');
+Route::get('/admin/category/edit/{id}', 'Admin\CategoryController@edit')->name('category.edit');
+Route::post('/admin/category/update/{id}', 'Admin\CategoryController@update')->name('category.update');
+
+
+
+
+
 
 
 Route::get('/home', 'HomeController@index')->name('home');

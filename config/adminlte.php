@@ -248,6 +248,11 @@ return [
         ],
         ['header' => 'ARTICLE MANAGEMENT'],
         [
+            'text' => 'All Category',
+            'url'  => 'admin/category/index',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        [
             'text' => 'New Post',
             'url'  => 'admin/post/create',
             'icon' => 'fas fa-fw fa-user',

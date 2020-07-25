@@ -1,52 +1,43 @@
 @extends('adminlte::page')
 
-@section('title', 'All Post')
+@section('title', 'Edit Category')
 
 @section('content_header')
-    <h3>
-        Post
-        <a href="{{ url('admin/post/create') }}" class="btn btn-primary pull-right" style="margin-left: 10px;">Add</a>
-    </h3>
+   
 @stop
-
 @section('content')
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Update Data</h3>
+                    </div>
+                    <div class="card-body">
+                        @if (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="box box-primary">
-            <div class="box-header">
-            @if (session('success'))
-                <div class="alert alert-success">
-                    {!! session('success') !!}
-                </div>
-            @endif
-            </div>
-            <div class="box-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="post_table" style="width:100%;">
-                        <thead class=" text-primary">
-                            <tr>
-                                <th class="text-center">No</th>
-                                <th class="text-center">Title</th>
-                                <th class="text-center">Image</th>
-                                <th class="text-center">Isi</th>
-                                <th class="text-center">Status</th>
-                                <th class="text-center">Categories</th>
-                                <th class="text-center">Created At</th>
-                                <th class="text-center">Updated At</th>
-                                <th class="text-center">Action</th>
-                            </tr>
-                        </thead>
-                    </table>
+                        <form action="{{ url('/admin/category/update/' .$category->id) }}" method="post">
+                            @csrf
+                            <div class="form-group">
+                                <label for="">Category</label>
+                                <input type="text" name="nama_kategori" class="form-control {{ $errors->has('nama_kategori') ? 'is-invalid':'' }}" value="{{ $category->nama_kategori }}" placeholder="Masukkan nama lengkap">
+                                <p class="text-danger">{{ $errors->first('nama_kategori') }}</p>
+                            </div>
+                           
+                            <div class="form-group">
+                                <button class="btn btn-danger btn-sm">Update</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
-</div>
-
-
-@section('adminlte_js')
+    @section('adminlte_js')
     <script type="text/javascript">
 
         $(document).ready(function() {

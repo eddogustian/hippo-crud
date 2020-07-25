@@ -1,11 +1,11 @@
 @extends('adminlte::page')
 
-@section('title', 'All Post')
+@section('title', 'All Category')
 
 @section('content_header')
     <h3>
-        Post
-        <a href="{{ url('admin/post/create') }}" class="btn btn-primary pull-right" style="margin-left: 10px;">Add</a>
+        Category
+        <a href="{{ url('admin/category/create') }}" class="btn btn-primary pull-right" style="margin-left: 10px;">Add</a>
     </h3>
 @stop
 
@@ -23,15 +23,11 @@
             </div>
             <div class="box-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="post_table" style="width:100%;">
+                    <table class="table table-bordered" id="category_table" style="width:100%;">
                         <thead class=" text-primary">
                             <tr>
                                 <th class="text-center">No</th>
-                                <th class="text-center">Title</th>
-                                <th class="text-center">Image</th>
-                                <th class="text-center">Isi</th>
-                                <th class="text-center">Status</th>
-                                <th class="text-center">Categories</th>
+                                <th class="text-center">Category</th>
                                 <th class="text-center">Created At</th>
                                 <th class="text-center">Updated At</th>
                                 <th class="text-center">Action</th>
@@ -56,10 +52,10 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-            var tabel = $('#post_table');
+            var tabel = $('#category_table');
             tabel.DataTable( {
                 "ajax": {
-                    "url": "{{ url('api/admin/post/data') }}",
+                    "url": "{{ url('api/admin/category/data') }}",
                     "dataSrc": function (d) {
                         if (d.length === 0) {
                             result = [];

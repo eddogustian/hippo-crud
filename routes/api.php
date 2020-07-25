@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('admin/post/data', 'Admin\PostController@loadData')->name('data_post');
+Route::get('admin/category/data', 'Admin\CategoryController@loadData')->name('data_category');
