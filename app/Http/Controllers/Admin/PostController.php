@@ -10,10 +10,6 @@ use Auth;
 use DataTables;
 use Response;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Input;
-use File;
-
-
 
 class PostController extends Controller
 {
@@ -73,9 +69,8 @@ class PostController extends Controller
         try {
             $ext = $request->file('gambar')->extension();
             $imgname = date('dmyHis').'.'.$ext;
-            $this->validate($request, [ 'gambar' => 'required|file|max:5000']);
             $path = Storage::putFileAs('public/image', $request->file('gambar'), $imgname);
-            //MENYIMPAN DATA KE TABLE INVOICES
+            
             $post = Post::create([
                 'id'     => $request->id,
                 'id_kategori' => $request->id_kategori,
