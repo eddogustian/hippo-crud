@@ -21,7 +21,7 @@
                             </div>
                         @endif
 
-                        <form action="{{ route('post.store') }}" method="post">
+                        <form action="{{ route('post.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <input type="hidden" name="id" class="form-control">
@@ -44,6 +44,11 @@
                                 <label for="">Content</label>
                                 <textarea name="isi" cols="5" rows="5" class="form-control {{ $errors->has('isi') ? 'is-invalid':'' }}"></textarea>
                                 <p class="text-danger">{{ $errors->first('isi') }}</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Pilih gambar</label>
+                                <input type="file" name="gambar">
+                                <p class="text-danger">{{ $errors->first('gambar') }}</p>
                             </div>
                             <div class="form-group">
                                 <button class="btn btn-primary btn-sm">Create</button>
