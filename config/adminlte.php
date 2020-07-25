@@ -249,12 +249,12 @@ return [
         ['header' => 'ARTICLE MANAGEMENT'],
         [
             'text' => 'New Post',
-            'url'  => 'admin/settings',
+            'url'  => 'admin/post/create',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
             'text' => 'All Post',
-            'url'  => 'admin/settings',
+            'url'  => 'admin/post/index',
             'icon' => 'fas fa-fw fa-lock',
         ],
         [

@@ -48,7 +48,38 @@ class PostController extends Controller
             $counter++;
 
         }
-        
         return json_encode($arr_data);
+    }
+     /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create() {
+        $categorys = Category::orderBy('created_at', 'DESC')->get();
+        return view('admin.post.create', compact('categorys'));
+    }
+
+    public function save(Request $request) {
+        // var_dump('masuk save');die();
+        //VALIDASI
+        $this->validate($request, [
+            'id_kategori' => 'required|exists:categories,id',
+        ]);
+
+        try {
+            //MENYIMPAN DATA KE TABLE INVOICES
+            $post = Post::create([
+                'id'     => $request->id,
+                'id_kategori' => $request->id_kategori,
+                'judul'       => $request->judul,
+                'isi'         => $request->isi,
+                'status'      => 1
+            ]);
+			
+            return redirect('/admin/post/index')->with(['success' => 'Data telah disimpan']);
+        } catch(\Exception $e) {
+            return redirect()->back()->with(['error' => $e->getMessage()]);
+        }
     }
 }

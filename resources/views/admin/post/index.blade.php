@@ -12,6 +12,11 @@
     <div class="col-md-12">
         <div class="box box-primary">
             <div class="box-header">
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {!! session('success') !!}
+                </div>
+            @endif
             </div>
             <div class="box-body">
                 <div class="table-responsive">
