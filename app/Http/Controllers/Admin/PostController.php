@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index() 
     {
         $posts = Post::with(['category'])->orderBy('created_at', 'DESC')->get();
@@ -85,6 +90,13 @@ class PostController extends Controller
             return redirect()->back()->with(['error' => $e->getMessage()]);
         }
     }
+    
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function edit($id)
     {
         $categorys = Category::orderBy('created_at', 'DESC')->get();
@@ -104,7 +116,7 @@ class PostController extends Controller
         $post = Post::find($id);
         
         if(!empty($post->toArray())){
-            // cek kode title
+        
             $cek_judul   = Post::where('judul', '=', $request->judul)->get();
 
             if($request->judul == $post->judul ){
@@ -143,6 +155,12 @@ class PostController extends Controller
         }
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function destroy($id)
     {
         $post = Post::find($id);

@@ -21,4 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('admin/post/data', 'Admin\PostController@loadData')->name('data_post');
 Route::get('admin/category/data', 'Admin\CategoryController@loadData')->name('data_category');
 Route::get('admin/transaction/data', 'Admin\TransactionController@loadData')->name('data_transaction');
+Route::get('admin/transaction/detail', 'Admin\TransactionController@loadDataDetail')->name('detail_transaction');
 
