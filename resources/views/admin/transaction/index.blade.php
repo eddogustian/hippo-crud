@@ -93,14 +93,14 @@
 
         });
        
-    function transactionDetail() {
+    function transactionDetail(dataId) {
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
         $.ajax({
-            url: '{{ url("api/admin/transaction/detail") }}',
+            url: '{{ url("api/admin/transaction/data") }}',
             dataType: "json",
             success: function(data) {
                 // console.log(data);
@@ -108,7 +108,8 @@
                 var html = "";
                 var i = 0;
                 jQuery.each(data,function(key,value) {
-                   
+                var dataId =  value[i][1];
+                // alert(dataId);
                 // console.log(value[0]);
                     html +='<tr>';
                     html +='<td>'+ value[i][1] + '</td>';

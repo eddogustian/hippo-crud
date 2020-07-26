@@ -29,6 +29,7 @@ class TransactionController extends Controller
         $counter = 0;
         foreach ($transactions as $transaction) {
             //  echo $category->nama_kategori; die();
+            $kodetransaksi = $transaction->kodetransaksi;
             $arr_data['data'][$counter][] = $counter+1;
             $arr_data['data'][$counter][] = $transaction->kodetransaksi ? $transaction->kodetransaksi : "<p class='text-center'> - </p>";
             $arr_data['data'][$counter][] = $transaction->total ? $transaction->total : "<p class='text-center'> - </p>";
