@@ -33,8 +33,8 @@ class TransactionController extends Controller
             $arr_data['data'][$counter][] = $transaction->kodetransaksi ? $transaction->kodetransaksi : "<p class='text-center'> - </p>";
             $arr_data['data'][$counter][] = $transaction->total ? $transaction->total : "<p class='text-center'> - </p>";
             $arr_data['data'][$counter][] = date("d-m-Y H:i:s", strtotime($transaction->created_at));
-            $arr_data['data'][$counter][] = date("d-m-Y H:i:s", strtotime($transaction->updated_at));
-            $arr_data['data'][$counter][] = "<a href='".url('admin/transaction/edit/'.$transaction->id)."' class='btn btn-primary'><i class='glyphicon glyphicon-edit'></i>Detail</a>";
+            $arr_data['data'][$counter][] = date("d-m-Y H:i:s", strtotime($transaction->updated_at)); 
+            $arr_data['data'][$counter][] = "<button onclick='transactionDetail()' class='btn btn-primary'><i class='glyphicon glyphicon-edit'></i>Detail</button>";
             $counter++;
         }
         return json_encode($arr_data);

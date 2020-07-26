@@ -42,7 +42,7 @@
                 <h3>Detail</h3>
             </div>
             <div class="card-body">
-                <table class="table table-hover table-bordered">
+                <table class="table table-hover table-bordered"  id="transaction_detail">
                     <thead>
                         <tr>
                             <th>Product</th>
@@ -50,6 +50,7 @@
                             <th colspan="2">Action</th>
                         </tr>
                     </thead>
+                  
                 </table>
             </div>
         </div>
@@ -85,35 +86,42 @@
                     { className: 'text-center', targets: [] },
                 ],
                 "dom": 'lBfrtip',
-                "buttons": [
-                    {
-                        extend: 'excel',
-                        title : 'Data Bengkel',
-                        exportOptions: {
-                            columns: [ 0, 1, 2 ]
-                        }
-                    },
-                    {
-                        extend: 'pdf',
-                        title : 'Data Bengkel',
-                        orientation: 'landscape',
-                        pageSize: 'LEGAL',
-                        exportOptions: {
-                            columns: [ 0, 1, 2 ]
-                        }
-                    },
-                    {
-                        extend: 'print',
-                        title : 'Data Bengkel',
-                        exportOptions: {
-                            columns: [ 0, 1, 2 ]
-                        }
-                    },
-                ],
+            });
+            $(document).on("click", '.category_table', function() { 
+                    alert('masuk table');
             });
 
         });
+       
+    function transactionDetail() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: '{{ url("api/admin/transaction/detail") }}',
+            dataType: "json",
+            success: function(data) {
+                // console.log(data);
 
+                var html = "";
+                var i = 0;
+                jQuery.each(data,function(key,value) {
+                   
+                // console.log(value[0]);
+                    html +='<tr>';
+                    html +='<td>'+ value[i][1] + '</td>';
+                    html +='<td>'+ value[i][2] + '</td>';
+                    html +='<td>'+ value[i][3] + '</td>';
+                    html +='</tr>';
+
+                    i++;
+                });
+                $('#transaction_detail').html(html);
+            }
+        });
+    }     
     </script>
     @yield('js')
     
