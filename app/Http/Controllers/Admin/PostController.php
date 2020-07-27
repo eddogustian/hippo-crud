@@ -37,7 +37,7 @@ class PostController extends Controller
     
             $arr_data['data'][$counter][] = $counter+1;
             $arr_data['data'][$counter][] = $post->judul ? $post->judul : "<p class='text-center'> - </p>";
-            $arr_data['data'][$counter][] =  storage_path('image/'.$post->gambar);
+            $arr_data['data'][$counter][] = "<img src='".Storage::url('app/public/image/'.$post->gambar)."' class='img-fluid' />";
             $arr_data['data'][$counter][] = $post->isi ? $post->isi : "<p class='text-center'> - </p>";
 
             if ($post->status == 0) {
