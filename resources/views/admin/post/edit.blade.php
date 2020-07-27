@@ -56,9 +56,14 @@
                                 </select>
                             </div>
                             <div class="form-group">
+                                @if ("/storage/images/{{$post->gambar }}")
+                                    <img src="{{ URL('storage/image/' .$post->gambar) }}">
+                                @else
+                                        <p>No image found</p>
+                                @endif
                                 <label for="">Gambar</label>
-                                <input type="file" name="gambar" class="form-control {{ $errors->has('gambar') ? 'is-invalid':'' }}" value="{{ $post->gambar }}" readonly>
-                                <p class="text-danger">{{ $errors->first('gambar') }}</p>
+                                <input type="file" name="gambar" value="{{ $post->gambar }}"/>
+                                <p class="text-danger">{{ $post->gambar }}</p>
                             </div>
                             <div class="form-group">
                                 <button class="btn btn-danger btn-sm">Update</button>
