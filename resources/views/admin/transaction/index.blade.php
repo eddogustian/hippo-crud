@@ -45,11 +45,14 @@
                 <table class="table table-hover table-bordered"  id="transaction_detail">
                     <thead>
                         <tr>
-                            <th>Product</th>
-                            <th>QTY</th>
-                            <th colspan="2">Action</th>
+                            <th>No Transaksi</th>
+                            <th>Nama Produk</th>
+                            <th colspan="2">Qty</th>
                         </tr>
                     </thead>
+                    <tbody>
+
+                    </tbody>
                   
                 </table>
             </div>
@@ -121,7 +124,7 @@
 
                     i++;
                 });
-                $('#transaction_detail').html(html);
+                $('#transaction_detail tbody').html(html);
             }
         });
     }     

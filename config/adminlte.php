@@ -244,23 +244,23 @@ return [
         [
             'text'        => 'Dashboard',
             'url'         => 'admin/dashboard',
-            'icon'        => 'far fa-fw fa-home',
+            'icon'        => 'fas fa-home',
         ],
         ['header' => 'ARTICLE MANAGEMENT'],
         [
             'text' => 'All Category',
             'url'  => 'admin/category/index',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa-server',
         ],
         [
             'text' => 'New Post',
             'url'  => 'admin/post/create',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa-plus-circle',
         ],
         [
             'text' => 'All Post',
             'url'  => 'admin/post/index',
-            'icon' => 'fas fa-fw fa-lock',
+            'icon' => 'fas fa-server',
         ],
         [
             'text'    => 'TRANSACTION',
