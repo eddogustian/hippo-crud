@@ -73,32 +73,6 @@
                 "columnDefs": [
                     { className: 'text-center', targets: [] },
                 ],
-                "dom": 'lBfrtip',
-                "buttons": [
-                    {
-                        extend: 'excel',
-                        title : 'Data Bengkel',
-                        exportOptions: {
-                            columns: [ 0, 1, 2 ]
-                        }
-                    },
-                    {
-                        extend: 'pdf',
-                        title : 'Data Bengkel',
-                        orientation: 'landscape',
-                        pageSize: 'LEGAL',
-                        exportOptions: {
-                            columns: [ 0, 1, 2 ]
-                        }
-                    },
-                    {
-                        extend: 'print',
-                        title : 'Data Bengkel',
-                        exportOptions: {
-                            columns: [ 0, 1, 2 ]
-                        }
-                    },
-                ],
             });
 
         });

@@ -57,7 +57,7 @@
                             </div>
                             <div class="form-group">
                                 @if ("/storage/images/{{$post->gambar }}")
-                                    <img src="{{ Storage::url('app/public/image/' .$post->gambar) }}" height="60" width="80">
+                                    <img src="{{ Storage::url('app/public/public/image/' .$post->gambar) }}" height="60" width="80">
                                 @else
                                         <p>No image found</p>
                                 @endif
@@ -100,32 +100,6 @@
                 "order": [[ 0, "asc" ]],
                 "columnDefs": [
                     { className: 'text-center', targets: [] },
-                ],
-                "dom": 'lBfrtip',
-                "buttons": [
-                    {
-                        extend: 'excel',
-                        title : 'Data Bengkel',
-                        exportOptions: {
-                            columns: [ 0, 1, 2 ]
-                        }
-                    },
-                    {
-                        extend: 'pdf',
-                        title : 'Data Bengkel',
-                        orientation: 'landscape',
-                        pageSize: 'LEGAL',
-                        exportOptions: {
-                            columns: [ 0, 1, 2 ]
-                        }
-                    },
-                    {
-                        extend: 'print',
-                        title : 'Data Bengkel',
-                        exportOptions: {
-                            columns: [ 0, 1, 2 ]
-                        }
-                    },
                 ],
             });
 
