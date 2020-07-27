@@ -20,7 +20,7 @@
                             </div>
                         @endif
 
-                        <form action="{{ url('/admin/post/update/' .$post->id) }}" method="post">
+                        <form action="{{ url('/admin/post/update/' .$post->id) }}" method="post" enctype="multipart/form-data" >
                             @csrf
                             <div class="form-group">
                                 <label for="">Nama Lengkap</label>
@@ -62,7 +62,7 @@
                                         <p>No image found</p>
                                 @endif
                                 <label for="">Gambar</label>
-                                <input type="file" name="gambar" value="{{ $post->gambar }}"/>
+                                <input type="file" name="gambar"/>
                                 <p class="text-danger">{{ $post->gambar }}</p>
                             </div>
                             <div class="form-group">
