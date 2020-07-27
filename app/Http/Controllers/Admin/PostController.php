@@ -37,8 +37,9 @@ class PostController extends Controller
     
             $arr_data['data'][$counter][] = $counter+1;
             $arr_data['data'][$counter][] = $post->judul ? $post->judul : "<p class='text-center'> - </p>";
-            $arr_data['data'][$counter][] = $post->gambar ? $post->gambar : "<p class='text-center'> - </p>";
+            $arr_data['data'][$counter][] =  storage_path('image/'.$post->gambar);
             $arr_data['data'][$counter][] = $post->isi ? $post->isi : "<p class='text-center'> - </p>";
+
             if ($post->status == 0) {
                 $arr_data['data'][$counter][] = "<span class='badge badge-danger'>Tidak Aktif</span>";
             }
