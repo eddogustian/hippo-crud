@@ -57,7 +57,7 @@
                             </div>
                             <div class="form-group">
                                 @if ("/storage/images/{{$post->gambar }}")
-                                    <img src="{{ URL('storage/image/' .$post->gambar) }}">
+                                    <img src="{{ Storage::url('app/public/image/' .$post->gambar) }}" height="60" width="80">
                                 @else
                                         <p>No image found</p>
                                 @endif
