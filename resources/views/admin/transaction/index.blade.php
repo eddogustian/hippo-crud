@@ -19,7 +19,7 @@
             </div>
             <div class="box-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="category_table" style="width:100%;">
+                    <table class="table table-bordered" id="transaction_table" style="width:100%;">
                         <thead class=" text-primary">
                             <tr>
                                 <th class="text-center">No</th>
@@ -71,7 +71,7 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-            var tabel = $('#category_table');
+            var tabel = $('#transaction_table');
             tabel.DataTable( {
                 "ajax": {
                     "url": "{{ url('api/admin/transaction/data') }}",
@@ -90,7 +90,7 @@
                 ],
                 "dom": 'lBfrtip',
             });
-            $(document).on("click", '.category_table', function() { 
+            $(document).on("click", '.transaction_table', function() { 
                     alert('masuk table');
             });
 
