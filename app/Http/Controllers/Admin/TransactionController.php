@@ -35,7 +35,7 @@ class TransactionController extends Controller
             $arr_data['data'][$counter][] = $transaction->total ? $transaction->total : "<p class='text-center'> - </p>";
             $arr_data['data'][$counter][] = date("d-m-Y H:i:s", strtotime($transaction->created_at));
             $arr_data['data'][$counter][] = date("d-m-Y H:i:s", strtotime($transaction->updated_at)); 
-            $arr_data['data'][$counter][] = "<button onclick='transactionDetail()' class='btn btn-primary'><i class='glyphicon glyphicon-edit'></i>Detail</button>";
+            $arr_data['data'][$counter][] = '<button onclick="transactionDetail(\''.$kodetransaksi.'\')" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i>Detail</button>';
             $counter++;
         }
         return json_encode($arr_data);
@@ -45,12 +45,14 @@ class TransactionController extends Controller
         return view('admin.transaction.details');
     }
 
-    public function loadDataDetail() {
+    public function loadDataDetail(Request $request) {
+
 
         $arr_data   = array();
         $detailtransactions = DB::table('transactions')
             ->join('transaction_details', 'transactions.kodetransaksi', '=', 'transaction_details.kodetransaksi')
             ->select('transactions.*', 'transaction_details.nama_produk', 'transaction_details.qty')
+            ->where('transactions.kodetransaksi', '=' , $request->kodetransaksi)
             ->get();
         $counter = 0;
         foreach ($detailtransactions as $detailtransaction) {

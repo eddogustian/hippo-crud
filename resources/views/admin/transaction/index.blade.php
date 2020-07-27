@@ -93,14 +93,16 @@
 
         });
        
-    function transactionDetail(dataId) {
+    function transactionDetail(kodetransaksi) {
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
         $.ajax({
-            url: '{{ url("api/admin/transaction/data") }}',
+            url: '{{ url("api/admin/transaction/detail") }}',
+            type: 'post',
+            data: 'kodetransaksi='+kodetransaksi,
             dataType: "json",
             success: function(data) {
                 // console.log(data);
